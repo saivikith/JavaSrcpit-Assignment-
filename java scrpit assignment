@@ -1,0 +1,575 @@
+
+
+
+
+sloved in Java Scrpit  by SaiVikith
+*************************************************************************************************************************************************************
+
+
+Write a function to find largest of three numbers.
+Write a function to check if a date is valid.
+Write a function to compute multiplication of two matrices.
+Write a program to print pascal triangle.
+Write a program to read a file, split it into words, remove duplicates and print in sorted order.
+Write a program to read a file and generate a frequency table for the words in that file.
+Write a function to generate fibonacci sequence.
+Write a function to reverse all the elements in an array.
+Write a function partition with the method signature of int[][] partition(int arr[], int value), which returns two arrays, first containing all values in arr smaller than the value and second array which contain all values in arr larger than the value. Make sure you exclude value from both arrays.
+Eg:
+  assert(partition([1, 4, 2, 5, 3], 3)[0] == [1, 2])
+  assert(partition([1, 4, 2, 5, 3], 3)[1] == [4, 5])
+
+Write a function mergeSorted with the method signature of int[] merge(int[] sorted, int[] sorted2) which merges two sorted arrays sorted and sorted2 and returns the sorted array but in descending order. Time complexity of O(n) and space complexity of O(n).
+Eg:
+  assert(mergeSorted([1, 3, 5], [2, 4]) == [5, 4, 3, 2, 1])
+Write a function secondLargest with the method signature of int secondLargest(int[] arr) which returns the second largest number in the array. DO NOT sort the array. Time complexity must be O(n).
+
+Write a function pairs with the signature of int[][] pairs(int[] arr), which returns an array of two element array containing adjacent values.
+
+Eg:
+  assert(pairs([1, 2, 3, 4, 5]) == [[1, 2], [2, 3], [3, 4], [4, 5]])
+Write a function isSorted with the method signature of bool isSorted(int arr[]) to check if the passed in array is sorted.
+  assert(isSorted([]) == true)
+  assert(isSorted([1, 3, 2]) == false)
+  assert(isSorted([1, 2, 3, 5]) == true)
+Write a function using lambda expressions and streams in Java or LINQ in C# to compute sum of all primes less than n. Method signature should be int sumOfPrimes(int[] arr).
+Implement double LinkedList. Write a function to reverse that LinkedList.
+
+
+
+
+
+****************************************************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1**************large of three*************************************************
+
+
+var largeOfThree =function(a,b,c){
+if (a>b && b>c)
+console.log(a);
+else if (b>a && b>c)
+console.log(b);
+else
+console.log(c);};
+
+
+************************************************************************************************************
+
+
+
+2************Write a function to check if a date is valid*****************************
+
+
+
+ var date,month,year,max_year = 9999,min_year = 1800;
+
+
+ var leapYear = function(year){
+ return (((year % 4)===0) && ((year % 100)===0) && ((year % 400)===0));
+ }
+
+ var dateValid = function(d,m,y){
+ if(y>max_year || y<min_year){
+ return false;
+ }
+ if(d>31 || d<1){
+ return false;
+ }
+ if(m>12 || m<1){
+ return false;
+ }
+
+ if(m === 2){
+ if(leapYear(y)){
+ if(d<=29){
+ return true;
+ }else{
+ return false;
+ }
+ }
+ }
+
+ else if ( m == 4 || m == 6 || m == 9 || m == 11 ){
+ if(d <= 30){
+ return true;
+ }else{
+ return false;
+ }
+ }else{
+ return true;
+ }
+
+ }
+ 
+ 
+
+
+
+
+****************************************************************************************************************
+
+
+3*******************MatrixMultication*************************************************************************
+
+var matricsMul = function(arr1,arr2){
+
+ 
+ var res = new Array(arr1.length);
+ for(var i = 0;i<arr1.length;i++){
+ res[i] = new Array(arr2[0].length);
+ }
+
+ 
+ if(arr1[0].length === arr2.length){
+ for(var a = 0;a<arr1.length;a++){
+ for(var j = 0;j<arr2[0].length;j++){
+ res[a][j] = 0;
+ }
+ } 
+ }
+ console.log(res);
+ // var a = res;
+ for(var x=0;x<arr1.length;x++){
+ for(var y=0;y<arr2[0].length;y++){
+ for(var z=0;z<arr2.length;z++){
+ res[x][y] += arr1[x][z]*arr2[z][y];
+ console.log(arr1[x][z]*arr2[z][y]);
+ 
+ }
+ }
+ }
+
+ console.log(res);
+ 
+
+ }
+
+
+************************************************************************************************************************
+
+
+4*****************************pascal trainagle**********************************************
+
+
+var generate = function(numRows) {
+    let triangle = [[1], [1,1]]
+    
+    if(numRows === 0){
+        return []
+    } else if(numRows == 1){
+        return [[1]]       
+    } else if(numRows == 2){
+        return  [[1], [1,1]]
+    } else {      
+        for(let i = 2; i < numRows; i++){       
+            addRow(triangle)
+        }
+    }
+    return triangle
+    
+};
+var addRow = function(triangle){
+    let previous = triangle[triangle.length - 1]
+    let newRow = [1]
+    for(let i = 0; i < previous.length - 1; i++){
+        let current = previous[i]
+        let next = previous[i+1] 
+        newRow.push(current + next)
+    }
+    newRow.push(1)
+    return triangle.push(newRow)
+    
+}
+
+
+*************************************************************************************************** 
+
+
+
+
+5****************** Write a program to read a file, split it into words, remove duplicates and print in sorted order\*********************************
+
+var sortAndRemove=function(text){
+var newtext =text.replace(/,/g," ");
+var lis =newtext.split(" ");
+var table = {};
+for(var i = 0;i<lis.length;i++){
+    if(lis[i] in table){
+    table[lis[i]]=1+table[lis[i]];
+}
+else
+ table[lis[i]]=1;
+}
+var remove =Object.keys(table);
+var sortList=remove.sort();
+console.log(sortList);
+};
+
+
+
+
+
+6************Write a program to read a file and generate a frequency table for the words in that file.*******************************
+
+
+
+var freqTable=function(text){
+
+var newtext =text.replace(/,/g," ");
+var lis =newtext.split(" ");
+var table = {};
+for(var i = 0;i<lis.length;i++){
+    if(lis[i] in table){
+    table[lis[i]]=1+table[lis[i]];
+}
+else
+ table[lis[i]]=1;
+}
+console.log(table);
+};
+
+
+
+
+************************************************************************************************************************
+
+
+7************************************Write a function to generate fibonacci sequence**************************************
+
+
+
+var fibonacci  = function(num)
+{ 
+    var num1=0; 
+    var num2=1; 
+    var sum; 
+    var i=0; 
+    for (i = 0; i < num; i++)  
+    { 
+        sum=num1+num2; 
+        num1=num2; 
+        num2=sum; 
+    console.log(num2);
+    } 
+     
+}
+
+
+
+
+**************************************************************************************************************************
+
+
+
+8**************************************Write a function to reverse all the elements in an array.***********************
+
+var reverseArray =function(toBeReversed){
+  var reversed = [];
+
+  function reverser (toBeReversed){
+    if (toBeReversed.length !== 0){
+      reversed.push( toBeReversed.pop() );
+      reverser( toBeReversed );
+    }
+  }
+
+  reverser(toBeReversed);
+  console.log(reversed);
+};
+
+
+****************************************************************************************************************
+
+
+
+
+
+9*****************Write a function partition with the method signature of int[][] partition(int arr[], int value), which returns two arrays, first containing all values in arr smaller than the value and second array which contain all values in arr larger than the value. Make sure you exclude value from both arrays.***********************************************************************************************************************
+
+
+
+
+
+var partition=function(arr,val){
+                var smallArr = [];
+                var largeArr = [];
+
+                for(var i = 0;i<arr.length;i++){
+                   
+                    if(arr[i]<val){
+                        
+                        smallArr.push(arr[i]);
+                        
+                    }else if(arr[i] > val){
+                        
+                        largeArr.push(arr[i]);
+                    }
+                }
+                
+                console.log(smallArr,largeArr);                
+            }
+********************************************************************************************************************************************************************************************************************************************************
+
+
+
+
+10************************************************************ sort array*********************************
+
+
+var getPosition= function(num, place){
+ return  Math.floor(Math.abs(num)/Math.pow(10,place))% 10
+};
+
+ var getMax =function(arr) {
+
+    let max = 0;
+    for (let num of arr) {
+        if (max < num.toString().length) {
+            max = num.toString().length
+        }
+    }
+    return max
+};
+
+var  radixSort =function(arr) {
+
+    const max = getMax(arr); // length of the max digit in the array
+
+    for (let i = 0; i < max; i++) {
+        let buckets = Array.from({ length: 10 }, () => [ ])
+        for (let j = 0; j < arr.length; j++) {
+          buckets[getPosition(arr[ j ], i)].push(arr[ j ]); // pushing into buckets
+        }
+        arr = [ ].concat(buckets);
+    }
+    return arr
+}
+
+
+
+11*****************************************************second largest*******************************************
+
+ var  secondLargest =function(array){
+                var first=0;
+                var second=0;
+
+
+                for(var i=0;i<array.length;i++){
+                    if(array[i]>array[i+1]){
+                        first = array[i];
+                        second = array[i+1];
+                    }else if(array[i]<array[i+1]){
+                        first = array[i+1];
+                        second = array[i];
+
+                    }
+                    
+                }
+                return second;                
+            };
+*********************************************************************************************************************
+
+
+12*****************************************************paris******************************************************
+
+
+var pairs =function(array){
+
+                var newArray = new Array(array.length-1);
+
+                for(var i=0;i<newArray.length;i++){
+                    newArray[i] = new Array(2);   
+                }
+                
+                for(var j=0;j<array.length-1;j++){
+                    for(var k=0;k<2;k++){
+                    newArray[j][k]=array[j+k];
+                    }
+                }
+
+                return newArray;
+                
+            };
+********************************************************************************************************************
+
+
+
+
+
+13**********************************************isSortedArray*****************************************************
+
+
+
+ var isSorted = function(arr){
+
+	var boolVal ;
+    for(var j=0;j<arr.length-1;j++){
+       if(arr[j]>arr[j+1]){
+                            
+          boolVal = 0;
+          }else{
+          boolVal = 1;
+                      }  }
+
+           
+          if(boolVal){
+          return true;
+           }
+          else{
+          return false;
+             }}
+                    
+                
+***********************************************************************************************************************
+
+
+
+14***************************************************print all primes sum *************************************
+            var isPrimeNumber = function(n){
+                if(n<=1){
+                    return false;
+                }
+                else{
+                    for(var i=2;i<n;i++){
+                        if(n%i===0){
+                            return false;                                                
+                        }
+                    }
+                    return true;
+                }
+            }
+            var sumOfPrimes = function(number){
+                var primeNumSum=0;
+                for(var j=0;j<number;j++){
+                    if(isPrimeNumber(j)){
+                        primeNumSum+=j;
+               
+                        
+                    }
+                }
+
+                return primeNumSum;
+            }
+**********************************************************************************************************************************
+
+
+
+
+
+
+************************************double linked list reverse*****************************************
+
+
+
+
+// Node structure of linked list
+class Node {
+    constructor(element)
+    {
+        this.element = element;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+//class for linked list helper methods
+class LinkedList {
+  //constructor with head null and size 0 executes while creating objects
+  //For every head and size are null and 0
+    constructor()
+    {
+        this.head = null;
+        this.size = 0;
+    }
+  //add element to linked list
+    add(element)
+  {
+    // creates a new node
+    var node = new Node(element);
+ 
+    // to store current node
+    var current;
+ 
+    // if list is Empty add the
+    // element and make it head
+    if (this.head == null)
+        this.head = node;
+    else {
+        current = this.head;
+ 
+        // iterate to the end of the
+        // list. stops when current.next is null
+        while (current.next) {
+            current = current.next;
+        }
+ 
+        // add node
+        current.next = node;
+        node.prev = current;
+    }
+    //added node so increase size
+    this.size++;
+  }
+  //print the list
+  printList()
+  {
+    var curr = this.head;
+    var str = "";
+    //iterate while curr is null
+    while (curr) {
+        str += curr.element + " ";
+        curr = curr.next;
+    }
+    console.log(str);
+  }
+  //reverse the linked list
+  reverse () {
+    var temp = new Node();
+    temp = null;
+    var current = this.head;
+    /* swap next and prev for all nodes of  
+         doubly linked list */
+    while (current != null) {
+      //analyse for doubts
+      temp = current.prev;
+      current.prev = current.next;
+      current.next = temp;
+      current = current.prev;
+    }
+    //For left over node make it as head
+    if (temp != null) {
+      this.head = temp.prev;
+    }
+  }
+}
+
+var list = new LinkedList();
+list.add(10);
+list.add(20);
+list.add(30);
+list.add(40);
+list.printList();
+list.reverse();
+list.printList();
