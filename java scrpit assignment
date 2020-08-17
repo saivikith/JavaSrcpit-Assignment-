@@ -12,7 +12,7 @@ Write a function to compute multiplication of two matrices.
 Write a program to print pascal triangle.
 Write a program to read a file, split it into words, remove duplicates and print in sorted order.
 Write a program to read a file and generate a frequency table for the words in that file.
-Write a function to generate fibonacci sequence.
+Write a function to generate fibonacci sequence
 Write a function to reverse all the elements in an array.
 Write a function partition with the method signature of int[][] partition(int arr[], int value), which returns two arrays, first containing all values in arr smaller than the value and second array which contain all values in arr larger than the value. Make sure you exclude value from both arrays.
 Eg:
@@ -68,11 +68,11 @@ Implement double LinkedList. Write a function to reverse that LinkedList.
 
 var largeOfThree =function(a,b,c){
 if (a>b && b>c)
-console.log(a);
+return a;
 else if (b>a && b>c)
-console.log(b);
+return b;
 else
-console.log(c);};
+return c;};
 
 
 ************************************************************************************************************
